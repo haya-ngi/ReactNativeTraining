@@ -12,7 +12,7 @@ useEffect(() => {
 const DATA: ItemProps[] = [
   { title: 'Couple Massage', image : 'https://reactnative.dev/img/tiny_logo.png', price: '$100'},
   { title: 'Single Massage' ,image : 'https://reactnative.dev/img/tiny_logo.png', price: '$60' },
- { title: 'Packages' ,image : 'https://reactnative.dev/img/tiny_logo.png', price: '$150' }
+ { title: 'Vouchers' ,image : 'https://reactnative.dev/img/tiny_logo.png', price: '$150' }
 ];
 
 const screenWidth = Dimensions.get('window').width;
