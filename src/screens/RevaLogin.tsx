@@ -8,29 +8,36 @@ import {
   Alert, 
   Image, 
   Dimensions, 
-  SafeAreaView 
+   
 } from 'react-native';
 import Revatextfield from '../Components/Revatextfield';
 import ButtonReva from '../Components/Revabutton';
+import {StackNavigationProp} from '@react-navigation/stack';
+import PlantElement from '../assets/svgs/plantelements.svg'
+import PlantElement1 from '../assets/svgs/plantelement1.svg'
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+
 
 const { width } = Dimensions.get('window');
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    console.log('Login button pressed');
+
     if (!email || !password) {
       Alert.alert('Error', 'Please enter both email and password.');
       return;
     }
-    // Implement your actual login logic here (API call, navigation, etc.)
+     navigation.navigate('HomeTabs'); 
     Alert.alert('Success', `Attempting to log in as ${email}`);
   };
 
   return (
-        <View style={styles.outerContainer}>
+    <SafeAreaView  style={{ flex: 1, backgroundColor: '#ffffff' }}>
+   <View style={styles.outerContainer}>
       <View style={styles.topHeader}> 
   
           <View style={styles.textContainer}>
@@ -38,12 +45,18 @@ const LoginScreen = () => {
               <Text style={styles.getStartedText}>Let's get started</Text> 
           </View>
 <View style={styles.graphicContainer}>
-      {/* <PlantElements width={120} height={120} /> */}
+  {/* <PlantElement1  width={120} height={120} /> */}
+       <PlantElement1 style={{ right: -50, bottom: -10 }} />
+          <PlantElement style={{ bottom: -5 }} />
+      {/* <PlantElement1 />
+      <PlantElement /> */}
 
 
 </View>
 
       </View>
+
+
       <View style={styles.bottomSection} />
       <View style ={styles.bottomTitleFieldView}> 
       <Text style = {styles.bottomTitle}>Enter your registered mobile number</Text>
@@ -64,10 +77,12 @@ const LoginScreen = () => {
         <ButtonReva 
         title="Login"
         backgroundColor="#1b1919ff"
-        onPress={ handleLogin}
+        onPress={() => handleLogin()}
       />
     </View>
      </View>
+    </SafeAreaView>
+     
    
   );
 };
@@ -87,27 +102,25 @@ button: {
     fontSize: 16,
   },
  outerContainer: {
-    flex: 1,
+    // justifyContent: 'flex-end',
    backgroundColor: 'white', 
-
-    // justifyContent: 'center',
-    // alignItems: 'center',
+ 
   },
   topHeader: {
     backgroundColor: '#141313ff', 
     flexDirection: 'row',
-    // alignItems: 'flex-start',
-    paddingTop: 100,
-    paddingBottom: 60,
+    alignItems: 'flex-end',
+    marginBottom : 10,
     width: '100%',
+    height: 220,
   },
   textContainer: {
     // flex: 3, 
-    paddingLeft: 20,
-   paddingTop: 20,
+    paddingLeft: 10,
+    marginBottom : 50
   },
   welcomeText: {
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 5,
@@ -122,11 +135,15 @@ button: {
     color: '#1E1E1E',
   },
   graphicContainer: {
-    // flex: 1.5, 
-    // alignItems: 'flex-end',
-    justifyContent: 'flex-start',
-    paddingRight: 15,
-  },
+    flexDirection: 'row',
+    width: '100%',
+     marginBottom : 30,
+    // alignItems : 'flex-end',
+    // paddingLeft: 20,
+
+       justifyContent: 'flex-start',
+    alignItems: 'center',
+      },
 
   bottomTitleFieldView: {
     justifyContent: 'flex-start',
@@ -139,8 +156,8 @@ bottomSection: {
     backgroundColor: 'white', 
     // flex: 1,
     
-    borderTopLeftRadius: 10, 
-    borderTopRightRadius: 10,
+    borderTopLeftRadius: 20, 
+    borderTopRightRadius: 20,
    
     shadowColor: '#000',
     shadowOffset: { width: 0, height: -2 },
@@ -152,7 +169,7 @@ bottomSection: {
     paddingHorizontal: 20,
   },
   formTitle: {
-      fontSize: 22,
+      fontSize: 42,
       fontWeight: 'bold',
       color: '#1E1E1E',
       marginBottom: 30,
